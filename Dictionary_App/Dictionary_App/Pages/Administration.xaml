@@ -8,36 +8,107 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Administration">
     <Page.Resources>
-        <Style x:Key="ActionButton" TargetType="Button">
-            <Setter Property="Margin" Value="5"/>
-            <Setter Property="Width" Value="100"/>
-            <Setter Property="Height" Value="30"/>
-        </Style>
-        <Style x:Key="ActionPanel" TargetType="Grid">
-            <Setter Property="Visibility" Value="Collapsed"/>
-            <!-- Alte setări comune pentru containere -->
+        <Style x:Key="ModernButtonStyle" TargetType="Button">
+            <Setter Property="Foreground" Value="#c9ada7"/>
+            <Setter Property="Background" Value="#4a4e69"/>
+            <Setter Property="BorderBrush" Value="#c9ada7"/>
+            <Setter Property="Padding" Value="10 5"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontFamily" Value="C"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="Margin" Value="10 10 10 10"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#9d8c98"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="WhiteSmoke"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
     </Page.Resources>
 
-    <StackPanel>
-        <Button Content="ADD word" Click="TogglePanelVisibility" Style="{StaticResource ActionButton}" Tag="AddWordPanel"/>
-        <Grid x:Name="AddWordPanel" Style="{StaticResource ActionPanel}">
-            <TextBox x:Name="WordTextBox" Margin="5"/>
-            <TextBox x:Name="DefinitionTextBox" Margin="5"/>
-            <Button Content="Adaugă" Click="Add_Click" Style="{StaticResource ActionButton}"/>
+    <Grid Background="#22223b">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel x:Name="StackButtons" VerticalAlignment="Center">
+            <Button Content="ADD word" Click="TogglePanelVisibility" Style="{StaticResource ModernButtonStyle}" Tag="AddWordPanel" />
+            <Button Content="DELETE word" Click="TogglePanelVisibility" Style="{StaticResource ModernButtonStyle}" Tag="DeleteWordPanel"/>
+            <Button Content="UPDATE word" Click="TogglePanelVisibility" Style="{StaticResource ModernButtonStyle}" Tag="UpdateWordPanel"/>
+        </StackPanel>
+        <Border Background="#9a8c98" CornerRadius="10" Grid.Column="1"/>
+
+
+        <Grid x:Name="AddWordPanel" Grid.Column="1" VerticalAlignment="Center" Visibility="Hidden">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Label HorizontalAlignment="Right" Content="Word:" Grid.Row="0" Grid.Column="0" Margin="5"/>
+            <Label HorizontalAlignment="Right" Content="Definition:" Grid.Row="1" Grid.Column="0" Margin="5"/>
+            <Label HorizontalAlignment="Right" Content="Image:" Grid.Row="2" Margin="5"/>
+            <TextBox x:Name="WordToAddTextBox" Margin="5" Background="#f2e9e4" Grid.Column="1"/>
+            <TextBox x:Name="DefinitionToAddTextBox" Margin="5" Background="#f2e9e4" Grid.Row="1" Grid.Column="1"/>
+            <TextBox x:Name="ImageToAddTextBox" Margin="5" Background="#f2e9e4" Grid.Row="2" Grid.Column="1"/>
+            <Button Width="200" Content="ADD"  Style="{StaticResource ModernButtonStyle}" Grid.Row="3" Grid.ColumnSpan="2"/>
         </Grid>
 
-        <Button Content="DELETE word" Click="TogglePanelVisibility" Style="{StaticResource ActionButton}" Tag="DeleteWordPanel"/>
-        <Grid x:Name="DeleteWordPanel" Style="{StaticResource ActionPanel}">
-            <TextBox x:Name="WordToDeleteTextBox" Margin="5"/>
-            <Button Content="DELETE" Click="Delete_Click" Style="{StaticResource ActionButton}"/>
+        <Grid x:Name="DeleteWordPanel" Grid.Column="1" VerticalAlignment="Center" Visibility="Hidden">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            
+            <Label Content="Word:" HorizontalAlignment="Right" Grid.Row="0" Grid.Column="0" Margin="5"/>
+            <TextBox x:Name="WordToDeleteTextBox" Background="#f2e9e4" Margin="5" Grid.Column="1"/>
+            <Button Width="200" Content="DELETE"  Style="{StaticResource ModernButtonStyle}" Grid.Row="3" Grid.ColumnSpan="2"/>
         </Grid>
 
-        <Button Content="UPDATE word" Click="TogglePanelVisibility" Style="{StaticResource ActionButton}" Tag="UpdateWordPanel"/>
-        <Grid x:Name="UpdateWordPanel" Style="{StaticResource ActionPanel}">
-            <TextBox x:Name="WordToUpdateTextBox" Margin="5"/>
-            <TextBox x:Name="DefinitionToUpdateTextBox" Margin="5"/>
-            <Button Content="UPDATE"  Style="{StaticResource ActionButton}"/>
+        <Grid x:Name="UpdateWordPanel" Grid.Column="1" VerticalAlignment="Center" Visibility="Hidden">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Label HorizontalAlignment="Right" Content="Word:" Grid.Row="0" Grid.Column="0" Margin="5"/>
+            <Label HorizontalAlignment="Right" Content="Definition:" Grid.Row="1" Grid.Column="0" Margin="5"/>
+            <Label HorizontalAlignment="Right" Content="Image:" Grid.Row="2" Margin="5"/>
+            <TextBox x:Name="WordToUpdateTextBox" Margin="5" Grid.Column="1" Background="#f2e9e4"/>
+            <TextBox x:Name="DefinitionToUpdateTextBox" Margin="5" Grid.Row="1" Grid.Column="1" Background="#f2e9e4"/>
+            <TextBox x:Name="ImageToUpdateTextBox" Margin="5" Grid.Row="2" Grid.Column="1" Background="#f2e9e4"/>
+            <Button Width="200" Content="UPDATE"  Style="{StaticResource ModernButtonStyle}" Grid.Row="3" Grid.ColumnSpan="2"/>
         </Grid>
-    </StackPanel>
+    </Grid>
 </Page>
+ 

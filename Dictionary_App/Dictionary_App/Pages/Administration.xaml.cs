@@ -48,14 +48,20 @@ namespace Dictionary_App.Pages
             // Obține numele containerului asociat butonului din atributul Tag
             string panelName = button.Tag.ToString();
 
-            // Găsește containerul folosind numele
-            FrameworkElement panel = FindName(panelName) as FrameworkElement;
-
-            // Inversează vizibilitatea containerului, dacă este găsit
-            if (panel != null)
+            // Parcurge toate elementele din Content și le închide, cu excepția panoului asociat butonului apăsat
+            foreach (UIElement element in (Content as Panel)?.Children)
             {
-                panel.Visibility = panel.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
+                if (element is FrameworkElement panel && panel.Name != panelName && panel.Name != "StackPanel" && (panel.Name == "AddWordPanel" || panel.Name == "DeleteWordPanel" || panel.Name == "UpdateWordPanel"))
+                {
+                    panel.Visibility = Visibility.Collapsed;
+                }
+                if (element is FrameworkElement panel1 && panel1.Name == panelName)
+                {
+                    panel1.Visibility = Visibility.Visible;
+
+                }
             }
         }
+
     }
 }
