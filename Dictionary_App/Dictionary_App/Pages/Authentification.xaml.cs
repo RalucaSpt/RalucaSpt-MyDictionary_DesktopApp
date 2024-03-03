@@ -24,5 +24,10 @@ namespace Dictionary_App.Pages
         {
             InitializeComponent();
         }
+
+        private void Authenticate_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Uri("Pages/Administration.xaml", UriKind.Relative));
+        }
     }
 }

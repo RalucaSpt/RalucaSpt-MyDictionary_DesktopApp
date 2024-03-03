@@ -24,5 +24,38 @@ namespace Dictionary_App.Pages
         {
             InitializeComponent();
         }
+
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+            AddWordPanel.Visibility = Visibility.Visible;
+            // Ascunde containerul pentru ștergere cuvânt (dacă este vizibil)
+            DeleteWordPanel.Visibility = Visibility.Collapsed;
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            // Schimbă vizibilitatea containerului pentru ștergere cuvânt
+            DeleteWordPanel.Visibility = Visibility.Visible;
+            // Ascunde containerul pentru adăugare cuvânt (dacă este vizibil)
+            AddWordPanel.Visibility = Visibility.Collapsed;
+        }
+
+        private void TogglePanelVisibility(object sender, RoutedEventArgs e)
+        {
+            // Obține butonul care a fost apăsat
+            Button button = (Button)sender;
+
+            // Obține numele containerului asociat butonului din atributul Tag
+            string panelName = button.Tag.ToString();
+
+            // Găsește containerul folosind numele
+            FrameworkElement panel = FindName(panelName) as FrameworkElement;
+
+            // Inversează vizibilitatea containerului, dacă este găsit
+            if (panel != null)
+            {
+                panel.Visibility = panel.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
+            }
+        }
     }
 }

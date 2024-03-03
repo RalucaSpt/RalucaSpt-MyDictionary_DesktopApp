@@ -7,8 +7,51 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Administration">
+    <Page.Resources>
+        <Style x:Key="ActionButton" TargetType="Button">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="30"/>
+        </Style>
+        <Style x:Key="ActionPanel" TargetType="Grid">
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <!-- Alte setări comune pentru containere -->
+        </Style>
+        <Style x:Key="ActionPanelVisible" TargetType="Grid">
+            <Setter Property="Visibility" Value="Visible"/>
+            <!-- Alte setări comune pentru containere -->
+        </Style>
+    </Page.Resources>
 
-    <Grid>
-        
-    </Grid>
+    <StackPanel>
+        <Button Content="ADD word" Click="TogglePanelVisibility" Style="{StaticResource ActionButton}" Tag="AddWordPanel"/>
+        <Grid x:Name="AddWordPanel" Style="{StaticResource ActionPanel}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <TextBox x:Name="WordTextBox" Margin="5"/>
+            <TextBox x:Name="DefinitionTextBox" Margin="5"/>
+            <Button Content="Adaugă" Click="Add_Click" Style="{StaticResource ActionButton}"/>
+        </Grid>
+
+        <Button Content="DELETE word" Click="TogglePanelVisibility" Style="{StaticResource ActionButton}" Tag="DeleteWordPanel"/>
+        <Grid x:Name="DeleteWordPanel" Style="{StaticResource ActionPanel}">
+            <TextBox x:Name="WordToDeleteTextBox" Margin="5"/>
+            <Button Content="DELETE" Click="Delete_Click" Style="{StaticResource ActionButton}"/>
+        </Grid>
+
+        <Button Content="UPDATE word" Click="TogglePanelVisibility" Style="{StaticResource ActionButton}" Tag="UpdateWordPanel"/>
+        <Grid x:Name="UpdateWordPanel" Style="{StaticResource ActionPanel}">
+            <TextBox x:Name="WordToUpdateTextBox" Margin="5"/>
+            <TextBox x:Name="DefinitionToUpdateTextBox" Margin="5"/>
+            <Button Content="UPDATE"  Style="{StaticResource ActionButton}"/>
+        </Grid>
+    </StackPanel>
 </Page>

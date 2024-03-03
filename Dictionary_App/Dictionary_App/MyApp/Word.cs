@@ -20,8 +20,6 @@ namespace Dictionary_App.MyApp
             _imagePath = imagePath;
         }
 
-
-
         public override string ToString()
         {
             return _name;
