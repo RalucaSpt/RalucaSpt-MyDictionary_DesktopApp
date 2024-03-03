@@ -16,10 +16,6 @@ using System.Windows.Shapes;
 
 namespace Dictionary_App.Pages
 {
-    /// <summary>
-    /// Interaction logic for Authentification.xaml
-    /// </summary>
-    /// 
     public partial class Authentification : Page
     {
 

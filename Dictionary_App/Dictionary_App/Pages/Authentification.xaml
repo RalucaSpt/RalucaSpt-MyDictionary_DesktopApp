@@ -6,9 +6,62 @@
       xmlns:local="clr-namespace:Dictionary_App.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+      Background="#22223b"
       Title="Authentification">
+    
+    <Page.Resources>
+        <!-- Stil pentru etichetele și casetele de text -->
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="#f2e9e4"/>
+            <Setter Property="Background" Value="#4a4e69"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="#f2e9e4"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+        <Style TargetType="PasswordBox">
+            <Setter Property="Background" Value="#f2e9e4"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+        <!-- Stil pentru butoane -->
+        <Style  TargetType="Button">
+            <Setter Property="Foreground" Value="#c9ada7"/>
+            <Setter Property="Background" Value="#4a4e69"/>
+            <Setter Property="BorderBrush" Value="#9a8c98"/>
+            <Setter Property="Padding" Value="10 5"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Margin" Value="10 10 10 10"/>
 
-    <Grid Margin="150 150 150 150">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#9a8c98"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#9a8c98"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+    
+    <Grid Margin="150 150 150 100">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
@@ -17,22 +70,20 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <!-- Label pentru numele de utilizator -->
-        <Label Content="Nume:" Margin="5"/>
+        <TextBlock Text="Authentification" FontSize="50" FontWeight="Bold" Foreground="#c9ada7" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="5"/>
 
-        <!-- Caseta de text pentru introducerea numelui de utilizator -->
-        <TextBox x:Name="UsernameBox" Grid.Row="0" Grid.Column="1" Margin="5" />
+        <!-- Numele de utilizator -->
+        <Label Content="Nume:" Grid.Row="1" />
+        <TextBox x:Name="UsernameBox" Grid.Row="1" Grid.Column="1"/>
 
-        <!-- Label pentru parolă -->
-        <Label Content="Parolă:" Grid.Row="1" Margin="5"/>
+        <!-- Parola -->
+        <Label Content="Parolă:" Grid.Row="2"/>
+        <PasswordBox x:Name="PasswordBox" Grid.Row="2" Grid.Column="1"/>
 
-        <!-- Caseta de text pentru introducerea parolei -->
-        <PasswordBox x:Name="PasswordBox" Grid.Row="1" Grid.Column="1" Margin="5"/>
-
-
-        <!-- Buton pentru autentificare -->
-        <Button Content="Autentificare" Click="Authenticate_Click" Grid.Row="2" Grid.ColumnSpan="2" Margin="5"/>
+        <!-- Butonul de autentificare -->
+        <Button Content="Login"  Click="Authenticate_Click" Grid.Row="3" Grid.ColumnSpan="2"/>
     </Grid>
 </Page>

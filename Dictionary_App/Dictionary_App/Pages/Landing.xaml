@@ -5,13 +5,60 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Dictionary_App.Pages"
       mc:Ignorable="d"
-      Title="MainWindow" Height="450" Width="800">
+      Title="MainWindow" Height="600" Width="800">
+    <Page.Resources>
+        <Style x:Key="ModernButtonStyle" TargetType="Button">
+            <Setter Property="Foreground" Value="#c9ada7"/>
+            <Setter Property="Background" Value="#4a4e69"/>
+            <Setter Property="BorderBrush" Value="#9a8c98"/>
+            <Setter Property="Padding" Value="10 5"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontFamily" Value="C"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="Margin" Value="10 10 10 10"/>
 
-    <Grid Margin="150,150,150,135">
-        <StackPanel Width="150" VerticalAlignment="Bottom">
-            <Button x:Name="DictionaryBut"  Margin="0,0,0,13" Click="DictionaryBut_Click">Dictionary</Button>
-            <Button x:Name="GameBut" Margin="0,0,0,13" Click="GameBut_Click">Play Game</Button>
-            <Button x:Name="AdminBut" Margin="0,0,0,13" Click="AdminBut_Click_1">Administration</Button>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#9a8c98"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#9a8c98"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="#4a4e69" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Border Background="#22223b" CornerRadius="5">
+            <Border.BorderBrush>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FF090100" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+        </Border>
+        <StackPanel VerticalAlignment="Center">
+            <Button x:Name="DictionaryBut" Style="{StaticResource ModernButtonStyle}" Click="DictionaryBut_Click">Dictionary</Button>
+            <Button x:Name="GameBut" Style="{StaticResource ModernButtonStyle}" Click="GameBut_Click">Play Game</Button>
+            <Button x:Name="AdminBut" Style="{StaticResource ModernButtonStyle}" Click="AdminBut_Click_1">Administration</Button>
         </StackPanel>
+        <TextBlock Grid.Column="1" Text="MyDICTIONARY" FontSize="50" Foreground="#f2e9e4" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,93,0,0"/>
+        <Image Grid.Column="1" Source="..\Images\book.png" Margin="150,150,150,150"/>
     </Grid>
 </Page>
