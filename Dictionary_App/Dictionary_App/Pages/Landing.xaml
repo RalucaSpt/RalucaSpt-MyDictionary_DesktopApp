@@ -4,11 +4,14 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Dictionary_App.Pages"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="Landing">
+      mc:Ignorable="d"
+      Title="MainWindow" Height="450" Width="800">
 
-    <Grid>
-        
+    <Grid Margin="150,150,150,135">
+        <StackPanel Width="150" VerticalAlignment="Bottom">
+            <Button x:Name="DictionaryBut"  Margin="0,0,0,13" Click="DictionaryBut_Click">Dictionary</Button>
+            <Button x:Name="GameBut" Margin="0,0,0,13" Click="GameBut_Click">Play Game</Button>
+            <Button x:Name="AdminBut" Margin="0,0,0,13" Click="AdminBut_Click_1">Administration</Button>
+        </StackPanel>
     </Grid>
 </Page>

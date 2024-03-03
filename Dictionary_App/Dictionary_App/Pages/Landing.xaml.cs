@@ -24,5 +24,21 @@ namespace Dictionary_App.Pages
         {
             InitializeComponent();
         }
+
+        private void DictionaryBut_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Uri("Pages/SearchWord.xaml", UriKind.Relative));
+        }
+
+        private void GameBut_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Uri("Pages/Game.xaml", UriKind.Relative));
+        }
+
+        private void AdminBut_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Uri("Pages/Authentification.xaml", UriKind.Relative));
+        }
     }
 }
+

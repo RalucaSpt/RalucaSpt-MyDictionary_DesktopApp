@@ -24,5 +24,14 @@ namespace Dictionary_App
         {
             InitializeComponent();
         }
+
+        private void GoBack_Click(object sender, RoutedEventArgs e)
+
+        {
+            if (MainFrame.CanGoBack)
+            {
+                MainFrame.GoBack();
+            }
+        }
     }
 }
