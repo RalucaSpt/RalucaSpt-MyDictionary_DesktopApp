@@ -17,25 +17,11 @@
             <Setter Property="Visibility" Value="Collapsed"/>
             <!-- Alte setări comune pentru containere -->
         </Style>
-        <Style x:Key="ActionPanelVisible" TargetType="Grid">
-            <Setter Property="Visibility" Value="Visible"/>
-            <!-- Alte setări comune pentru containere -->
-        </Style>
     </Page.Resources>
 
     <StackPanel>
         <Button Content="ADD word" Click="TogglePanelVisibility" Style="{StaticResource ActionButton}" Tag="AddWordPanel"/>
         <Grid x:Name="AddWordPanel" Style="{StaticResource ActionPanel}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            
             <TextBox x:Name="WordTextBox" Margin="5"/>
             <TextBox x:Name="DefinitionTextBox" Margin="5"/>
             <Button Content="Adaugă" Click="Add_Click" Style="{StaticResource ActionButton}"/>
