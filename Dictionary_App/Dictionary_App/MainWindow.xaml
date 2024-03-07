@@ -5,9 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dictionary_App"
         mc:Ignorable="d"
+        Background="#5a4e69"
         Title="MainWindow" Height="600" Width="800">
+    
     <Grid>
         <Button Content="Back" Click="GoBack_Click" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="100" Margin="0 0 0 15"/>
-        <Frame x:Name="MainFrame" Source="Pages/Landing.xaml" NavigationUIVisibility="Hidden" />
+        <Frame x:Name="MainFrame" Source="Pages/Administration.xaml" NavigationUIVisibility="Hidden" />
     </Grid>
 </Window>

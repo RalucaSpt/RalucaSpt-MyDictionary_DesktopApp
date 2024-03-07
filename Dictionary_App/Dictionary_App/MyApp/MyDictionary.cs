@@ -10,12 +10,28 @@ namespace Dictionary_App.MyApp
 {
     internal class MyDictionary
     {
-        Dictionary<string, List<Word>> categoryMap;
-        // Constructor
-        public MyDictionary()
+        private static MyDictionary instance;
+        private Dictionary<string, List<Word>> categoryMap;
+
+        // Proprietate publică statică pentru a accesa instanța singleton MyDictionary
+        public static MyDictionary Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new MyDictionary();
+                }
+                return instance;
+            }
+        }
+
+        // Constructor privat pentru a împiedica crearea de instanțe directe
+        private MyDictionary()
         {
             categoryMap = new Dictionary<string, List<Word>>();
         }
+
         // Add a word to the category map
         public void AddWord(string category, Word word)
         {

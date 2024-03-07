@@ -4,8 +4,10 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Dictionary_App.Pages"
+      xmlns:vm="clr-namespace:Dictionary_App.MyApp"
       mc:Ignorable="d"
       Title="MainWindow" Height="600" Width="800">
+
     <Page.Resources>
         <Style x:Key="ModernButtonStyle" TargetType="Button">
             <Setter Property="Foreground" Value="#c9ada7"/>

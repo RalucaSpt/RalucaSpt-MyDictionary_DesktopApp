@@ -127,10 +127,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Json\admin.Designer.json" />
     <None Include="Json\admin.json">
       <SubType>Component</SubType>
     </None>
+    <None Include="Json\category.json" />
+    <None Include="Json\word.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
