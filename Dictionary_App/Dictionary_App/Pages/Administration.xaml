@@ -57,7 +57,7 @@
         <Border Background="#9a8c98" CornerRadius="10" Grid.Column="1"/>
 
 
-        <Grid x:Name="AddWordPanel" Grid.Column="1" VerticalAlignment="Center" Visibility="Visible">
+        <Grid x:Name="AddWordPanel" Grid.Column="1" VerticalAlignment="Center" Visibility="Collapsed">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
@@ -86,7 +86,7 @@
             <Button Width="200" Content="ADD"  Style="{StaticResource ModernButtonStyle}" Grid.Row="4" Grid.ColumnSpan="2" Click="Button_Click"/>
         </Grid>
 
-        <Grid x:Name="DeleteWordPanel" Grid.Column="1" VerticalAlignment="Center" Visibility="Hidden">
+        <Grid x:Name="DeleteWordPanel" Grid.Column="1" VerticalAlignment="Center" Visibility="Visible">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
@@ -98,7 +98,7 @@
 
             <Label Content="Word:" HorizontalAlignment="Right" Grid.Row="0" Grid.Column="0" Margin="5"/>
             <TextBox x:Name="WordToDeleteTextBox" Background="#f2e9e4" Margin="5" Grid.Column="1"/>
-            <Button Width="200" Content="DELETE"  Style="{StaticResource ModernButtonStyle}" Grid.Row="3" Grid.ColumnSpan="2"/>
+            <Button Width="200" Content="DELETE"  Style="{StaticResource ModernButtonStyle}" Grid.Row="3" Grid.ColumnSpan="2" Click="delete_Click"/>
         </Grid>
 
         <Grid x:Name="UpdateWordPanel" Grid.Column="1" VerticalAlignment="Center" Visibility="Hidden">

@@ -1,12 +1,8 @@
-{
-  "_name": "b",
-  "_definition": "b",
-  "_imagePath": "..\\Images\\no_image.jpg",
-  "_category": "b"
-}
-{
-  "_name": "c",
-  "_definition": "c",
-  "_imagePath": "..\\Images\\no_image.jpg",
-  "_category": "c"
-}
+[
+  {
+    "_name": null,
+    "_definition": null,
+    "_imagePath": null,
+    "_category": null
+  }
+]
