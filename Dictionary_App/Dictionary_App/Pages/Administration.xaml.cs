@@ -11,6 +11,7 @@ namespace Dictionary_App.Pages
     public partial class Administration : Page
     {
         Word word = new Word();
+        List<Word> words = new List<Word>();
         List<string> categories;
         public Administration()
         {
@@ -22,6 +23,12 @@ namespace Dictionary_App.Pages
                 AddItems_ComboBox(ExistingCategoryComboBox);
             }
 
+            // Update the words list
+            if (File.Exists("../../Json/word.json"))
+            {
+                words = JsonConvert.DeserializeObject<List<Word>>(File.ReadAllText("../../Json/word.json"));
+                AddItems_ComboBox(WordComboBox, words); // Umple ComboBox-ul cu toate cuvintele
+            }
 
             // Set the data context
             this.DataContext = word;
@@ -66,6 +73,9 @@ namespace Dictionary_App.Pages
             AddWordPanel.Visibility = Visibility.Collapsed;
             DeleteWordPanel.Visibility = Visibility.Collapsed;
             UpdateWordPanel.Visibility = Visibility.Visible;
+
+            //initialize the combobox
+            AddItems_ComboBox(UpdateExistingCategoryComboBox);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -99,7 +109,7 @@ namespace Dictionary_App.Pages
             }
 
             // Crează o listă de obiecte Word din conținutul fișierului JSON
-            List<Word> wordList = JsonConvert.DeserializeObject<List<Word>>(File.ReadAllText("..\\..\\Json\\word.json"));
+            words = JsonConvert.DeserializeObject<List<Word>>(File.ReadAllText("..\\..\\Json\\word.json"));
 
             // Adaugă noul cuvânt la lista de cuvinte
             Word newWord = new Word
@@ -109,10 +119,10 @@ namespace Dictionary_App.Pages
                 _imagePath = ImageToAddTextBox.Text,
                 _category = ExistingCategoryComboBox.Visibility == Visibility.Visible ? ExistingCategoryComboBox.Text : NewCategoryText.Text
             };
-            wordList.Add(newWord);
+            words.Add(newWord);
 
             // Serializează lista actualizată de cuvinte și o scrie în fișierul JSON
-            json = JsonConvert.SerializeObject(wordList, Formatting.Indented);
+            json = JsonConvert.SerializeObject(words, Formatting.Indented);
             File.WriteAllText("..\\..\\Json\\word.json", json + Environment.NewLine);
             MessageBox.Show("Data been inserted!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
 
@@ -131,9 +141,13 @@ namespace Dictionary_App.Pages
         {
             NewCategoryButton.Visibility = Visibility.Collapsed;
             ExistingCategoryComboBox.Visibility = Visibility.Collapsed;
-
             ExistingCategoryButton.Visibility = Visibility.Visible;
-            NewCategoryText.Visibility = Visibility.Visible;
+            NewCategoryText.Visibility = Visibility.Visible;     
+            
+            UpdateNewCategoryButton.Visibility = Visibility.Collapsed;
+            UpdateExistingCategoryComboBox.Visibility = Visibility.Collapsed;
+            UpdateExistingCategoryButton.Visibility = Visibility.Visible;
+            NewCategoryTextBox.Visibility = Visibility.Visible;
 
             if (word._category != null)
             {
@@ -148,6 +162,11 @@ namespace Dictionary_App.Pages
             NewCategoryText.Visibility = Visibility.Collapsed;
             ExistingCategoryComboBox.Visibility = Visibility.Visible;
             NewCategoryButton.Visibility = Visibility.Visible;
+
+            UpdateExistingCategoryButton.Visibility = Visibility.Collapsed;
+            NewCategoryTextBox.Visibility = Visibility.Collapsed;
+            UpdateExistingCategoryComboBox.Visibility = Visibility.Visible;
+            UpdateNewCategoryButton.Visibility = Visibility.Visible;
             if (word._category != null)
             {
                 word._category.Remove(0);
@@ -173,6 +192,7 @@ namespace Dictionary_App.Pages
 
                     // Update the image path
                     ImageToAddTextBox.Text = destinationPath;
+                    NewImageTextBox.Text = destinationPath;
                     word._imagePath = destinationPath;
                 }
                 catch (Exception ex)
@@ -188,21 +208,21 @@ namespace Dictionary_App.Pages
             //delete the word from the JSON file
             string wordToDelete = WordToDeleteTextBox.Text;
 
-            List<Word> wordList = JsonConvert.DeserializeObject<List<Word>>(File.ReadAllText("..\\..\\Json\\word.json"));
+            words = JsonConvert.DeserializeObject<List<Word>>(File.ReadAllText("..\\..\\Json\\word.json"));
             bool found = false;
-            for (int i = wordList.Count - 1; i >= 0; i--)
+            for (int i = words.Count - 1; i >= 0; i--)
             {
-                Word w = wordList[i];
+                Word w = words[i];
                 if (w._name == wordToDelete)
                 {
-                    wordList.RemoveAt(i);
+                    words.RemoveAt(i);
                     found = true;
                 }
             }
 
             if (found)
             {
-                string json = JsonConvert.SerializeObject(wordList, Formatting.Indented);
+                string json = JsonConvert.SerializeObject(words, Formatting.Indented);
                 File.WriteAllText("..\\..\\Json\\word.json", json);
                 MessageBox.Show("Data been deleted!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
             }
@@ -211,6 +231,110 @@ namespace Dictionary_App.Pages
                 MessageBox.Show("The word does not exist!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             WordToDeleteTextBox.Text = "";
+        }
+
+        private void AddItems_ComboBox(ComboBox comboBoxName, List<Word> wordList)
+        {
+            //goleste combobox-ul
+            comboBoxName.Items.Clear();
+
+            // Add the words to the combobox
+            foreach (Word word in wordList)
+            {
+                comboBoxName.Items.Add(word._name);
+            }
+
+            // Set the selected index to the first item
+            if (wordList.Count > 0)
+            {
+                comboBoxName.SelectedIndex = 0;
+            }
+        }
+
+        // Metoda care reacționează la selecția unui cuvânt în ComboBox
+        private void WordComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Verifică dacă un cuvânt a fost selectat
+            if (WordComboBox.SelectedItem != null)
+            {
+                // Găsește cuvântul selectat în lista de cuvinte
+                string selectedWord = WordComboBox.SelectedItem.ToString();
+                Word wordToUpdate = words.Find(w => w._name == selectedWord);
+
+                // Verifică dacă cuvântul a fost găsit
+                if (wordToUpdate != null)
+                {
+                    // Afișează datele cuvântului selectat în câmpurile de text corespunzătoare
+                    NewDefinitionTextBox.Text = wordToUpdate._definition;
+                    NewImageTextBox.Text = wordToUpdate._imagePath;
+                    NewCategoryTextBox.Text = wordToUpdate._category;
+                    UpdateExistingCategoryComboBox.SelectedItem = wordToUpdate._category;
+                }
+                else
+                {
+                    MessageBox.Show("The selected word does not exist.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+
+
+
+        // În metoda UpdateButton_Click pentru a actualiza un cuvânt
+        private void UpdateButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Verifică dacă un cuvânt a fost selectat pentru actualizare
+            if (string.IsNullOrEmpty(WordComboBox.Text))
+            {
+                MessageBox.Show("Please select a word to update.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            // Găsește cuvântul care trebuie actualizat
+            Word wordToUpdate = words.Find(w => w._name == WordComboBox.Text);
+            if (wordToUpdate == null)
+            {
+                MessageBox.Show("The selected word does not exist.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            // Actualizează informațiile cu noile valori
+            words.Remove(wordToUpdate);
+            wordToUpdate._definition = NewDefinitionTextBox.Text;
+            wordToUpdate._imagePath = NewImageTextBox.Text;
+            if (UpdateExistingCategoryComboBox.Visibility == Visibility.Visible)
+            {
+                wordToUpdate._category = UpdateExistingCategoryComboBox.Text;
+            }
+            else
+            {
+                //check if the category already exists
+                if (categories != null && categories.Contains(NewCategoryTextBox.Text))
+                {
+                    MessageBox.Show("This category already exists!", "Eroare", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                else
+                {
+                    wordToUpdate._category = NewCategoryTextBox.Text;
+
+                    categories.Add(wordToUpdate._category);
+                    string json_c = JsonConvert.SerializeObject(categories, Formatting.Indented);
+                    File.WriteAllText("..\\..\\Json\\category.json", json_c + Environment.NewLine);
+                }
+            }
+            words.Add(wordToUpdate);
+
+            // Serializare lista actualizată de cuvinte și actualizare fișier JSON
+            string json = JsonConvert.SerializeObject(words, Formatting.Indented);
+            File.WriteAllText("..\\..\\Json\\word.json", json);
+
+            MessageBox.Show("Word updated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            // Resetarea câmpurilor de text
+            WordComboBox.Text = "";
+            NewDefinitionTextBox.Text = "";
+            NewImageTextBox.Text = "";
+            NewCategoryTextBox.Text = "";
+            UpdateExistingCategoryComboBox.Text = "";
         }
     }
 }
