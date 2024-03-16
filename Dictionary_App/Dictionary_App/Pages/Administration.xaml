@@ -57,7 +57,7 @@
         <Border Background="#9a8c98" CornerRadius="10" Grid.Column="1"/>
 
 
-        <Grid x:Name="AddWordPanel" Grid.Column="1" VerticalAlignment="Center" Visibility="Collapsed">
+        <Grid x:Name="AddWordPanel" Grid.Column="1" VerticalAlignment="Center" Visibility="Visible">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
@@ -76,14 +76,14 @@
             <Button x:Name="NewCategoryButton" HorizontalAlignment="Left" Width="94" Content="New category" FontSize="14" Style="{StaticResource ModernButtonStyle}" Grid.Column="1" Margin="414,3,0,4" Click="NewCategoryButton_Click" Visibility="Visible"/>
             <TextBox x:Name="NewCategoryText" Margin="5,5,144,5" Background="#f2e9e4" Grid.Row="0" Grid.Column="1" Visibility="Visible" />
             <Button x:Name="ExistingCategoryButton" HorizontalAlignment="Left" Width="129" Content="Existing category" FontSize="14" Style="{StaticResource ModernButtonStyle}" Grid.Column="1" Margin="384,3,0,4" Click="ExistingCategoryButton_Click" Visibility="Collapsed"/>
-            <ComboBox x:Name="ExistingCategoryComboBox" Margin="5,5,114,5" Background="#f2e9e4" Grid.Row="0" Grid.Column="1" Visibility="Visible" />
+            <ComboBox x:Name="ExistingCategoryComboBox" Margin="5,5,114,5" Background="#f2e9e4" Grid.Row="0" Grid.Column="1" Visibility="Visible" SelectedIndex="0"/>
 
             <Label HorizontalAlignment="Right" Content="Image:" Grid.Row="3" Margin="5"/>
             <TextBox x:Name="WordToAddTextBox" Margin="5" Background="#f2e9e4" Grid.Row="1" Grid.Column="1" />
             <TextBox x:Name="DefinitionToAddTextBox" Margin="5" Background="#f2e9e4" Grid.Row="2" Grid.Column="1"/>
             <TextBox x:Name="ImageToAddTextBox" Margin="5,5,114,5" Background="#f2e9e4" Grid.Row="3" Grid.Column="1"/>
             <Button x:Name="UploadButton" HorizontalAlignment="Left" Width="94" Content="Upload" FontSize="14" Style="{StaticResource ModernButtonStyle}" Grid.Row="3" Grid.Column="1" Margin="414,3,0,4" Click="UploadImageButton_Click"/>
-            <Button Width="200" Content="ADD"  Style="{StaticResource ModernButtonStyle}" Grid.Row="4" Grid.ColumnSpan="2" Click="Button_Click"/>
+            <Button Width="200" Content="ADD"  Style="{StaticResource ModernButtonStyle}" Grid.Row="4" Grid.ColumnSpan="2" Click="Add_Click"/>
         </Grid>
 
         <Grid x:Name="DeleteWordPanel" Grid.Column="1" VerticalAlignment="Center" Visibility="Collapsed">
@@ -98,10 +98,10 @@
 
             <Label Content="Word:" HorizontalAlignment="Right" Grid.Row="0" Grid.Column="0" Margin="5"/>
             <TextBox x:Name="WordToDeleteTextBox" Background="#f2e9e4" Margin="5" Grid.Column="1"/>
-            <Button Width="200" Content="DELETE"  Style="{StaticResource ModernButtonStyle}" Grid.Row="3" Grid.ColumnSpan="2" Click="delete_Click"/>
+            <Button Width="200" Content="DELETE"  Style="{StaticResource ModernButtonStyle}" Grid.Row="3" Grid.ColumnSpan="2" Click="Delete_Click"/>
         </Grid>
 
-        <Grid x:Name="UpdateWordPanel" Grid.Column="1" VerticalAlignment="Center" Visibility="Visible">
+        <Grid x:Name="UpdateWordPanel" Grid.Column="1" VerticalAlignment="Center" Visibility="Collapsed">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
@@ -120,14 +120,14 @@
             <Button x:Name="UpdateNewCategoryButton" HorizontalAlignment="Left" Width="94" Content="New category" FontSize="14" Style="{StaticResource ModernButtonStyle}" Grid.Row="1" Grid.Column="1" Margin="414,3,0,4" Click="NewCategoryButton_Click" Visibility="Visible"/>
             <TextBox x:Name="NewCategoryTextBox" Margin="5,5,144,5" Background="#f2e9e4" Grid.Row="1" Grid.Column="1" Visibility="Visible" />
             <Button x:Name="UpdateExistingCategoryButton" HorizontalAlignment="Left" Width="129" Content="Existing category" FontSize="14" Style="{StaticResource ModernButtonStyle}" Grid.Row="1" Grid.Column="1" Margin="384,3,0,4" Click="ExistingCategoryButton_Click" Visibility="Collapsed"/>
-            <ComboBox x:Name="UpdateExistingCategoryComboBox" Margin="5,5,114,5" Background="#f2e9e4" Grid.Row="1" Grid.Column="1" Visibility="Visible" />
+            <ComboBox x:Name="UpdateExistingCategoryComboBox" Margin="5,5,114,5" Background="#f2e9e4" Grid.Row="1" Grid.Column="1" Visibility="Visible"  SelectedIndex="0"/>
 
             <Label HorizontalAlignment="Right" Content="Image:" Grid.Row="3" Margin="5"/>
-            <ComboBox x:Name="WordComboBox" Margin="5" Background="#f2e9e4" Grid.Row="0" Grid.Column="1" SelectionChanged="WordComboBox_SelectionChanged" />
+            <ComboBox x:Name="WordComboBox" Margin="5" Background="#f2e9e4" Grid.Row="0" Grid.Column="1" SelectionChanged="WordComboBox_SelectionChanged"  SelectedIndex="0"/>
             <TextBox x:Name="NewDefinitionTextBox"  Margin="5" Background="#f2e9e4" Grid.Row="2" Grid.Column="1"/>
             <TextBox x:Name="NewImageTextBox" Margin="5,5,114,5" Background="#f2e9e4" Grid.Row="3" Grid.Column="1"/>
             <Button x:Name="UpdateUploadButton" HorizontalAlignment="Left" Width="94" Content="Upload" FontSize="14" Style="{StaticResource ModernButtonStyle}" Grid.Row="3" Grid.Column="1" Margin="414,3,0,4" Click="UploadImageButton_Click"/>
-            <Button Width="200" Content="Update"  Style="{StaticResource ModernButtonStyle}" Grid.Row="4" Grid.ColumnSpan="2" Click="UpdateButton_Click"/>
+            <Button Width="200" Content="Update"  Style="{StaticResource ModernButtonStyle}" Grid.Row="4" Grid.ColumnSpan="2" Click="Update_Click"/>
         </Grid>
     </Grid>
 </Page>

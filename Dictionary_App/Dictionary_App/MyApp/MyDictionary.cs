@@ -1,122 +1,110 @@
 ﻿using Dictionary_App.MyApp;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Windows;
 
 
 namespace Dictionary_App.MyApp
 {
-    internal class MyDictionary
+    public static class MyDictionary
     {
-        private static MyDictionary instance;
-        private Dictionary<string, List<Word>> categoryMap;
 
-        // Proprietate publică statică pentru a accesa instanța singleton MyDictionary
-        public static MyDictionary Instance
+        static MyDictionary()
         {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new MyDictionary();
-                }
-                return instance;
-            }
+            Initialize();
         }
 
-        // Constructor privat pentru a împiedica crearea de instanțe directe
-        private MyDictionary()
+        public static void Initialize()
         {
-            categoryMap = new Dictionary<string, List<Word>>();
+            if (File.Exists("../../Json/category.json"))
+            {
+                _categories = JsonConvert.DeserializeObject<List<string>>(File.ReadAllText("../../Json/category.json"));
+            }
+
+            if (File.Exists("../../Json/word.json"))
+            {
+                _words = JsonConvert.DeserializeObject<List<Word>>(File.ReadAllText("../../Json/word.json"));
+            }
+            _selectedWord = new Word();
         }
 
-        // Add a word to the category map
-        public void AddWord(string category, Word word)
+        public static void SaveWordsToJson()
         {
-            if (!categoryMap.ContainsKey(category))
-            {
-                categoryMap.Add(category, new List<Word>());
-            }
-            categoryMap[category].Add(word);
+            File.WriteAllText("../../Json/word.json", JsonConvert.SerializeObject(_words, Formatting.Indented) + Environment.NewLine);
+            MessageBox.Show("Data been inserted!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
+
         }
-        //delete a word from the category map
-        public void DeleteWord(Word word)
+
+        public static void SaveCategoriesToJson()
         {
-            foreach (var category in categoryMap)
-            {
-                if (category.Value.Contains(word))
-                {
-                    category.Value.Remove(word);
-                }
-            }
+            File.WriteAllText("../../Json/category.json", JsonConvert.SerializeObject(_categories, Formatting.Indented) + Environment.NewLine);
         }
-        //update a word in the category map
-        public void UpdateWord(Word oldWord, Word newWord)
+
+        public static void AddWord(Word word)
         {
-            foreach (var category in categoryMap)
-            {
-                if (category.Value.Contains(oldWord))
-                {
-                    category.Value.Remove(oldWord);
-                    category.Value.Add(newWord);
-                }
-            }
+            _words.Add(word);
+            SaveWordsToJson();
         }
-        //update a word in the category map
-        public void UpdateWord(string category, Word oldWord, Word newWord)
+
+        public static void AddCategory(string category)
         {
-            if (categoryMap.ContainsKey(category))
+            _categories.Add(category);
+            SaveCategoriesToJson();
+        }
+
+        public static void RemoveWord(Word word)
+        {
+            _words.Remove(word);
+            SaveWordsToJson();
+        }
+
+        public static void RemoveCategory(string category)
+        {
+            _categories.Remove(category);
+            SaveCategoriesToJson();
+        }
+
+        public static void UpdateWord(Word word)
+        {
+            var index = _words.FindIndex(w => w._name == word._name);
+            _words[index] = word;
+            SaveWordsToJson();
+        }
+
+        public static void UpdateCategory(string oldCategory, string newCategory)
+        {
+            var index = _categories.FindIndex(c => c == oldCategory);
+            _categories[index] = newCategory;
+            SaveCategoriesToJson();
+        }
+
+        public static void VerifyImageExists()
+        {
+            if (_selectedWord._imagePath == null)
             {
-                if (categoryMap[category].Contains(oldWord))
-                {
-                    categoryMap[category].Remove(oldWord);
-                    categoryMap[category].Add(newWord);
-                }
+                _selectedWord._imagePath = "..\\Images\\no_image.jpg";
             }
         }
 
-        // Get the list of words for a category
-        public List<Word> GetWords(string category)
+        public static void DeleteWord(string word)
         {
-            if (categoryMap.ContainsKey(category))
-            {
-                return categoryMap[category];
-            }
-            return null;
+            _words.RemoveAll(w => w._name == word);
+            SaveWordsToJson();
         }
 
-        //Get a word from a category
-        public Word GetWord(string category, string word)
+        public static void GetSuggestedWords(string category)
         {
-            if (categoryMap.ContainsKey(category))
-            {
-                foreach (var w in categoryMap[category])
-                {
-                    if (w._name == word)
-                    {
-                        return w;
-                    }
-                }
-            }
-            return null;
+            _suggestedWords = MyDictionary._words.Where(word => word._category == category).ToList();
         }
 
-        //Get a word 
-        public Word GetWord(string word)
-        {
-            foreach (var category in categoryMap)
-            {
-                foreach (var w in category.Value)
-                {
-                    if (w._name == word)
-                    {
-                        return w;
-                    }
-                }
-            }
-            return null;
-        }
+        public static List<Word> _words { get; set; }
+        public static List<string> _categories { get; set; }
+        public static List<Word> _suggestedWords { get; set; }
+        public static Word _selectedWord { get; set; }
     }
 }

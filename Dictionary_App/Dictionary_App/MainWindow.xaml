@@ -10,6 +10,6 @@
     
     <Grid>
         <Button Content="Back" Click="GoBack_Click" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="100" Margin="0 0 0 15"/>
-        <Frame x:Name="MainFrame" Source="Pages/Administration.xaml" NavigationUIVisibility="Hidden" />
+        <Frame x:Name="MainFrame" Source="Pages/SearchWord.xaml" NavigationUIVisibility="Hidden" />
     </Grid>
 </Window>
