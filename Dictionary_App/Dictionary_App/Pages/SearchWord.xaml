@@ -4,32 +4,43 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Dictionary_App.Pages"
+      xmlns:app="clr-namespace:Dictionary_App.MyApp"
+      xmlns:controls="clr-namespace:System.Windows.Controls;assembly=DotNetProjects.Input.Toolkit"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="SearchWord"
       Background="#22223b">
 
-    <Grid Margin="0,10,0,60">
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid Margin="100,0,100,0">
+    <Canvas Margin="0,10,0,10">
+
+        <Grid Panel.ZIndex="1" Canvas.Left="100" Width="605" HorizontalAlignment="Center" Height="483" VerticalAlignment="Top" RenderTransformOrigin="0.504,0.228">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
-            <TextBlock x:Name="txtTitle" Grid.Row="0" Grid.Column="0" Text="Search Word" FontSize="30" FontWeight="Bold" Margin="10,0,10,0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#f2e9e4"/>
-            <Border Grid.Row="1" CornerRadius="15"  Background="#f2e9e4">
-                <TextBox x:Name="txtSearch"   Margin="10,10,10,10" FontSize="20" VerticalAlignment="Center" TextWrapping="Wrap" Background="#f2e9e4"/>
+            <TextBlock x:Name="txtTitle" Grid.Column="0" Grid.ColumnSpan="2" Text="Search Word" FontSize="30" FontWeight="Bold" Margin="213,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#f2e9e4" Height="40" Width="179"/>
+            <Label x:Name="lblCategory" Grid.Column="0" Content="Category" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#f2e9e4" Height="40" Width="96" Grid.Row="1"/>
+            <ComboBox x:Name="categoryComboBox" Grid.Column="0" Grid.Row="1" FontSize="15" Background="#22223b" Height="24" VerticalAlignment="Center" Margin="96,0,0,0" Grid.ColumnSpan="2" SelectionChanged="categoryComboBox_SelectionChanged"/>
+            <Border Grid.Row="2" CornerRadius="15" Background="#f2e9e4" Grid.ColumnSpan="2">
+                <TextBox x:Name="txtSearch" Height="26" FontSize="20" VerticalAlignment="Center" TextWrapping="Wrap" Background="#f2e9e4" TextChanged="txtSearch_TextChanged" Margin="10,0,10,0"/>
             </Border>
+            <ListBox x:Name="suggestionsListBox" Grid.ColumnSpan="2" Grid.Row="3" SelectionChanged="suggestionsListBox_SelectionChanged" Visibility="Collapsed" Margin="0,0,0,-49"  />
+
         </Grid>
 
-        
-    </Grid>
+        <DockPanel Height="265" Width="587" Canvas.Left="118" Canvas.Top="155" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <Image x:Name="imgWord" DockPanel.Dock="Right"  Height="200" Width="200" HorizontalAlignment="Right" VerticalAlignment="Top" Canvas.Left="400" Canvas.Top="0" Source="..\Images\no_image.jpg"/>
+            <TextBlock x:Name="txtName" DockPanel.Dock="Top" Text="Word" FontSize="30" FontWeight="Bold" Foreground="#f2e9e4" HorizontalAlignment="Left" Canvas.Left="100" Canvas.Top="175" VerticalAlignment="Top"/>
+            <TextBlock x:Name="txtDescription" TextWrapping="Wrap" DockPanel.Dock="Top" Text="Meaning" FontSize="20" Foreground="#f2e9e4" HorizontalAlignment="Left" Canvas.Left="100" Canvas.Top="175" VerticalAlignment="Top"/>
+        </DockPanel>
+    </Canvas>
+
 </Page>
+
+
