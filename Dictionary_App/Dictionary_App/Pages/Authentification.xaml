@@ -6,7 +6,6 @@
       xmlns:local="clr-namespace:Dictionary_App.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Background="#22223b"
       Title="Authentification">
     
     <Page.Resources>

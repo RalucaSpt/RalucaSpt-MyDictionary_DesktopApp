@@ -5,11 +5,62 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Dictionary_App"
         mc:Ignorable="d"
-        Background="#5a4e69"
+        Background="#22223b"
         Title="MainWindow" Height="600" Width="800">
-    
+    <Window.Resources>
+        <!-- Stil pentru etichetele și casetele de text -->
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="#f2e9e4"/>
+            <Setter Property="Background" Value="#4a4e69"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="#f2e9e4"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+        <Style TargetType="PasswordBox">
+            <Setter Property="Background" Value="#f2e9e4"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+        <!-- Stil pentru butoane -->
+        <Style  TargetType="Button">
+            <Setter Property="Foreground" Value="#c9ada7"/>
+            <Setter Property="Background" Value="#4a4e69"/>
+            <Setter Property="BorderBrush" Value="#9a8c98"/>
+            <Setter Property="Padding" Value="10 5"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Margin" Value="10 10 10 10"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                             BorderBrush="{TemplateBinding BorderBrush}"
+                             BorderThickness="{TemplateBinding BorderThickness}"
+                             CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#9a8c98"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#9a8c98"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
     <Grid>
-        <Button Content="Back" Click="GoBack_Click" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="100" Margin="0 0 0 15"/>
-        <Frame x:Name="MainFrame" Source="Pages/SearchWord.xaml" NavigationUIVisibility="Hidden" />
+        <Button Content="Back" Click="GoBack_Click" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="100" Margin="0 0 0 15" />
+        <Frame x:Name="MainFrame" Source="Pages/Game.xaml" NavigationUIVisibility="Hidden" />
     </Grid>
 </Window>

@@ -3,7 +3,6 @@ using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
 
@@ -68,6 +67,7 @@ namespace Dictionary_App.Pages
             imgWord.Source = new BitmapImage(new Uri(MyDictionary._selectedWord._imagePath, UriKind.Relative));
             txtDescription.Text = MyDictionary._selectedWord._definition;
             txtName.Text = MyDictionary._selectedWord._name;
+            txtSearch.Text = MyDictionary._selectedWord._name;
         }
     }
 }
