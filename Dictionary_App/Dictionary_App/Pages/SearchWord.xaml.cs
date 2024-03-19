@@ -64,7 +64,8 @@ namespace Dictionary_App.Pages
             suggestionsListBox.Visibility = Visibility.Collapsed;
             if (suggestionsListBox.SelectedItem != null)
                 MyDictionary._selectedWord = MyDictionary._suggestedWords.Where(word => word._name == suggestionsListBox.SelectedItem.ToString()).FirstOrDefault();
-            imgWord.Source = new BitmapImage(new Uri(MyDictionary._selectedWord._imagePath, UriKind.Relative));
+            BitmapImage bitmap = new BitmapImage(new Uri(MyDictionary._selectedWord._imagePath, UriKind.Relative));
+            imgWord.Source = bitmap;
             txtDescription.Text = MyDictionary._selectedWord._definition;
             txtName.Text = MyDictionary._selectedWord._name;
             txtSearch.Text = MyDictionary._selectedWord._name;

@@ -129,6 +129,7 @@
             <Button x:Name="UpdateUploadButton" HorizontalAlignment="Left" Width="94" Content="Upload" FontSize="14" Style="{StaticResource ModernButtonStyle}" Grid.Row="3" Grid.Column="1" Margin="414,3,0,4" Click="UploadImageButton_Click"/>
             <Button Width="200" Content="Update"  Style="{StaticResource ModernButtonStyle}" Grid.Row="4" Grid.ColumnSpan="2" Click="Update_Click"/>
         </Grid>
+        <Button x:Name="BackButton" Content="Back" Style="{StaticResource ModernButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,402,0,0" Click="Back_Click" Grid.Column="1" Width="217"/>
     </Grid>
 </Page>
  

@@ -61,6 +61,6 @@
 
     <Grid>
         <Button Content="Back" Click="GoBack_Click" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="100" Margin="0 0 0 15" />
-        <Frame x:Name="MainFrame" Source="Pages/Game.xaml" NavigationUIVisibility="Hidden" />
+        <Frame x:Name="MainFrame" Source="Pages/Landing.xaml" NavigationUIVisibility="Hidden" />
     </Grid>
 </Window>

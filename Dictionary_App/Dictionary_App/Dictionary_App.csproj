@@ -113,6 +113,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MyApp\Admin.cs" />
+    <Compile Include="MyApp\GameLogic.cs" />
     <Compile Include="MyApp\MyDictionary.cs" />
     <Compile Include="MyApp\Word.cs" />
     <Compile Include="Pages\Administration.xaml.cs">
@@ -166,6 +167,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\book.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Banana.png" />
+    <Resource Include="Images\descărcare.png" />
+    <Resource Include="Images\dog.png" />
+    <Resource Include="Images\mar.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,33 +1,9 @@
 [
   {
-    "_name": "banana",
-    "_definition": "a long curved fruit that grows in clusters and has soft pulpy flesh and yellow skin when ripe",
-    "_imagePath": "..\\Images\\no_image.jpg",
-    "_category": "fruits"
-  },
-  {
-    "_name": "computer",
-    "_definition": "an electronic device that stores and processes data",
-    "_imagePath": "..\\Images\\no_image.jpg",
-    "_category": "technology"
-  },
-  {
     "_name": "book",
     "_definition": "a written or printed work consisting of pages glued or sewn together along one side and bound in covers",
     "_imagePath": "..\\Images\\no_image.jpg",
     "_category": "education"
-  },
-  {
-    "_name": "dog",
-    "_definition": "a domesticated carnivorous mammal that typically has a long snout, an acute sense of smell, non...",
-    "_imagePath": "..\\Images\\no_image.jpg",
-    "_category": "animals"
-  },
-  {
-    "_name": "apple",
-    "_definition": "a round fruit with red or green skin and a whitish interior",
-    "_imagePath": "..\\Images\\no_image.jpg",
-    "_category": "fruits"
   },
   {
     "_name": "car",
@@ -46,5 +22,29 @@
     "_definition": "a warm-blooded egg-laying vertebrate distinguished by the possession of feathers, wings, and a beak",
     "_imagePath": "..\\Images\\no_image.jpg",
     "_category": "animals"
+  },
+  {
+    "_name": "banana",
+    "_definition": "a long curved fruit that grows in clusters and has soft pulpy flesh and yellow skin when ripe",
+    "_imagePath": "..\\..\\Images\\Banana.png",
+    "_category": "fruits"
+  },
+  {
+    "_name": "computer",
+    "_definition": "an electronic device that stores and processes data",
+    "_imagePath": "..\\..\\Images\\descărcare.png",
+    "_category": "technology"
+  },
+  {
+    "_name": "dog",
+    "_definition": "a domesticated carnivorous mammal that typically has a long snout, an acute sense of smell, non...",
+    "_imagePath": "..\\..\\Images\\dog.png",
+    "_category": "animals"
+  },
+  {
+    "_name": "apple",
+    "_definition": "a round fruit with red or green skin and a whitish interior",
+    "_imagePath": "..\\..\\Images\\mar.png",
+    "_category": "fruits"
   }
 ]
