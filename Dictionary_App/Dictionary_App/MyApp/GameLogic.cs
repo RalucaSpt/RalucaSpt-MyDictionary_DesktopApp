@@ -17,7 +17,6 @@ namespace Dictionary_App.MyApp
             SelectWords();
         }
 
-        //select 5 words randomly from the list of words
         public static void SelectWords()
         {
             Random random = new Random();

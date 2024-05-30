@@ -1,19 +1,9 @@
 ﻿using Dictionary_App.MyApp;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Dictionary_App.Pages
 {
@@ -69,8 +59,6 @@ namespace Dictionary_App.Pages
             if (txtGuess.Text.Equals(GameLogic._wordsToGuess[GameLogic._currentRound - 1]._name, StringComparison.OrdinalIgnoreCase))
             {
                 GameLogic._score++;
-                // Display a message that the guess is correct
-
             }
             GameLogic._currentRound++;
             ShowNextWord();

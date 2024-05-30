@@ -6,6 +6,12 @@
     "_category": "education"
   },
   {
+    "_name": "apple",
+    "_definition": "a round fruit with red or green skin and a whitish interior",
+    "_imagePath": "..\\..\\Images\\mar.png",
+    "_category": "fruits"
+  },
+  {
     "_name": "car",
     "_definition": "a road vehicle, typically with four wheels, powered by an internal combustion engine",
     "_imagePath": "..\\Images\\no_image.jpg",

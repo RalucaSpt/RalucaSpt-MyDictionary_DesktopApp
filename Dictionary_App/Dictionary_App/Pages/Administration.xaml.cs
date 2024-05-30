@@ -41,13 +41,22 @@ namespace Dictionary_App.Pages
 
             MyDictionary.VerifyImageExists();
 
-            Word newWord = new Word
+            Word newWord = new Word();
+
+
+            newWord._name = WordToAddTextBox.Text;
+            newWord._definition = DefinitionToAddTextBox.Text;
+            if (string.IsNullOrEmpty(ImageToAddTextBox.Text))
             {
-                _name = WordToAddTextBox.Text,
-                _definition = DefinitionToAddTextBox.Text,
-                _imagePath = ImageToAddTextBox.Text,
-                _category = ExistingCategoryComboBox.Visibility == Visibility.Visible ? ExistingCategoryComboBox.Text : NewCategoryText.Text
-            };
+                newWord._imagePath = "..\\..\\Images\\default.png";
+            }
+            else
+            {
+                newWord._imagePath = ImageToAddTextBox.Text;
+            }
+            newWord._category = ExistingCategoryComboBox.Visibility == Visibility.Visible ? ExistingCategoryComboBox.Text : NewCategoryText.Text;
+
+
             MyDictionary.AddWord(newWord);
 
             WordToAddTextBox.Text = "";
@@ -113,7 +122,6 @@ namespace Dictionary_App.Pages
         }
         private void ExistingCategoryButton_Click(object sender, RoutedEventArgs e)
         {
-            // Change the visibility of the buttons and textboxes
             ExistingCategoryButton.Visibility = Visibility.Collapsed;
             NewCategoryText.Visibility = Visibility.Collapsed;
             ExistingCategoryComboBox.Visibility = Visibility.Visible;
@@ -160,14 +168,12 @@ namespace Dictionary_App.Pages
                     string destinationPath = System.IO.Path.Combine("..\\..\\Images", System.IO.Path.GetFileName(newImagePath));
                     System.IO.File.Copy(newImagePath, destinationPath, true);
 
-                    // Update the image path
                     ImageToAddTextBox.Text = destinationPath;
                     NewImageTextBox.Text = destinationPath;
                     MyDictionary._selectedWord._imagePath = destinationPath;
                 }
                 catch (Exception ex)
                 {
-                    // Display an error message if the file can't be accessed
                     MessageBox.Show($"File can't be accessed!: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
