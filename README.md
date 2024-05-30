@@ -14,7 +14,6 @@ This repository contains a C# WPF application that functions as an explanatory d
   - [Entertainment Module](#entertainment-module)
 - [Data Storage](#data-storage)
 - [Screenshots](#screenshots)
-- [License](#license)
 
 ## Features
 
